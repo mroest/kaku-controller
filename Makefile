@@ -18,3 +18,6 @@ lint:
 
 test:
 	py.test tests
+
+freeze:
+	pip freeze > requirements.txt

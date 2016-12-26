@@ -28,4 +28,4 @@ def switch_on(pin, addr, unit):
     transmitter = Transmitter(pin)
     proto = Proto(addr, unit)
     switch = Switch(proto, transmitter)
-    switch.switch_off()
+    switch.switch_on()

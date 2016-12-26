@@ -1,7 +1,8 @@
 import pytest
 
 
-class TestMain:
+class TestMain(object):
+
     def test_index(self, testapp):
         """ Test if the homepage loads """
         resp = testapp.get('/')

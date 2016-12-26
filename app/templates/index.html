@@ -1,16 +1,31 @@
 {% extends "bootstrap/base.html" %}
 {% block title %} {{ name }} {% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-fixed-top">
-  <!-- ... -->
-</div>
+    <div class="navbar navbar-fixed-top">
+        <!-- ... -->
+    </div>
 {% endblock %}
 
 {% block content %}
-  <h1>Klik aan klik uit schakelaar</h1>
-    <form method="post" action="switch">
-        <input type="submit" value="On" name="switch">
-        <input type="submit" value="Off" name="switch">
+    <h1>Lamp</h1>
+    <form id="switch" method="POST" action="/switch">
+        <input id="operation" type="hidden" name="operation" value="">
+        <div class="btn-group btn-group-lg:">
+            <button type="button" class="btn btn-default switch" aria-label="Lamp aan"
+                    name="switch" data-op="On">
+                <span class="glyphicon glyphicon-ok-circle"
+                      aria-hidden="true"></span> Lamp aan
+            </button>
+            <button type="button" class="btn btn-default switch" aria-label="Lamp uit"
+                    name="switch" data-op="Off">
+                <span class="glyphicon glyphicon-remove-circle"
+                      aria-hidden="true"></span> Lamp uit
+            </button>
+        </div>
     </form>
 {% endblock %}

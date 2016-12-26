@@ -4,9 +4,14 @@ from subprocess import call
 main = Blueprint('main', __name__)
 
 
-@main.route('/')
+@main.route('/', methods=['GET'])
 def index():
     return render_template('index.html', name='Kaku App')
+
+
+@main.route('/error', methods=['GET'])
+def error():
+    return render_template('error.html', msg=request.args.get('msg'))
 
 
 @main.route('/switch', methods=['POST'])
@@ -18,5 +23,10 @@ def switch():
     }
     command = options.get(op, None)
     if command is not None:
-        call([command])
-    return redirect(url_for('main.index'))
+        try:
+            call([command])
+        except OSError as err:
+            # Handle error
+            return redirect(url_for('.error', msg=err.strerror))
+
+    return redirect(url_for('.index'))

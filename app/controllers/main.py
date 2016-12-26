@@ -16,7 +16,7 @@ def error():
 
 @main.route('/switch', methods=['POST'])
 def switch():
-    op = request.form.get("switch", "Off")
+    op = request.form.get("operation", "Off")
     options = {
         'On': '/usr/local/bin/lamp_aan',
         'Off': '/usr/local/bin/lamp_uit'

@@ -1,6 +1,4 @@
 import unittest
-import pytest
-
 from ..proto import Proto
 
 

@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 
 
 class Transmitter(object):
-    """ Sends signal through 433Mhz transmitter """
+    """ Sends Kaku signal through 433Mhz transmitter """
 
     def __init__(self, gpio_pin):
         self.__pin = gpio_pin
@@ -19,7 +19,11 @@ class Transmitter(object):
         self.usleep = lambda x: sleep(x / 1000000.0)
 
     def transmit(self, packet):
-        transmit = {'0': self.__transmit_low_bit, '1': self.__transmit_high_bit}
+        transmit = {
+            '0': self.__transmit_low_bit,
+            '1': self.__transmit_high_bit
+        }
+
         for i in range(0, self.__repeats):
             self.__transmit_start()
 

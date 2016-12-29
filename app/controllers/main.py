@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, flash, request, redirect, url_for
-from subprocess import call
+from flask import Blueprint, render_template, request, redirect, url_for
 
 main = Blueprint('main', __name__)
 
@@ -16,17 +15,15 @@ def error():
 
 @main.route('/switch', methods=['POST'])
 def switch():
+    from app.kaku.switch import switch_off, switch_on
+
     op = request.form.get("operation", "Off")
     options = {
-        'On': '/usr/local/bin/lamp_aan',
-        'Off': '/usr/local/bin/lamp_uit'
+        'On': switch_on,
+        'Off': switch_off
     }
     command = options.get(op, None)
     if command is not None:
-        try:
-            call([command])
-        except OSError as err:
-            # Handle error
-            return redirect(url_for('.error', msg=err.strerror))
+        command(4, 1, 0)
 
     return redirect(url_for('.index'))

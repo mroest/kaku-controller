@@ -1,6 +1,5 @@
 # Klik aan Klik uit Controller
 
-
 # Protocol of klikaanklikuit A-series devices
 
 Copied from Wieltje, http://www.circuitsonline.net/forum/view/message/1181410#1181410,
